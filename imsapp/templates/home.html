@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-bar1" > 
+             
+                <a href="/home"> Home </a>
+                <p>|</p>
+                <a href="/inventory"> inventory </a>
+                <p>|</p>
+                <a href="/order/{{userid.id}}"> Order </a>
+                <p>|</p>
+                <a href="/show_list_order">Show Order </a>
+
+            
+        </div>
+        <div class="nav-bar2">
+            
+            <form action="/log_out" method="post">
+                {%csrf_token%}
+                <input type="submit" value="Log out">
+
+            </form>
+            
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome to our inventory system (IMS_APP)</h1>
+       
+        <p class="description">
+            An inventory system is a tool used to track and manage 
+             products, 
+               The system typically includes a database that stores information about each product,
+               such as its name, price, quantity,
+                and location within the business.
+                 The database can be used to generate reports of order,
+                  
+        </p>
+    </div>
+    
+
+
+</body>
+</html>

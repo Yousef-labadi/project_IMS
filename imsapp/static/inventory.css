@@ -1,0 +1,57 @@
+/* Navigation Bar */
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.nav-bar1 {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar1 a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.nav-bar1 a:hover {
+  color: #ccc;
+}
+
+.nav-bar1 p {
+  color: #ccc;
+  margin: 0 10px;
+}
+
+.nav-bar2 form {
+  margin: 0;
+}
+
+.nav-bar2 input[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.nav-bar2 input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+.a{
+  color: green;
+  text-decoration: none;
+  
+
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Order List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f5f5;
+        }
+        
+        h1 {
+          color: #333;
+          text-align: center;
+          margin-top: 30px;
+        }
+        
+        table {
+          border-collapse: collapse;
+          margin: 0 auto;
+          width: 80%;
+          background-color: #fff;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+          background-color: green;
+          color: #fff;
+          font-weight: bold;
+          text-align: left;
+          padding: 10px;
+        }
+        
+        td {
+          border-bottom: 1px solid #ddd;
+          padding: 10px;
+        }
+        
+        tr:last-child td {
+          border-bottom: none;
+        }
+        
+        .subtotal,
+        .shipping,
+        .total {
+          font-weight: bold;
+        }
+        
+        .subtotal td,
+        .shipping td,
+        .total td {
+          border-top: 1px solid #ddd;
+        }
+        
+        .subtotal td:first-child,
+        .shipping td:first-child,
+        .total td:first-child {
+          text-align: right;
+          padding-right: 10px;
+        }
+        
+        .subtotal td:last-child,
+        .shipping td:last-child,
+        .total td:last-child {
+          text-align: right;
+          padding-right: 10px;
+        }
+      </style>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="nav-bar1" > 
+             
+                <a href="/home"> Home </a>
+                <p>|</p>
+                <a href="/inventory"> inventory </a>
+                <p>|</p>
+                <a href="/order/{{user.id}}"> Order </a>
+            
+        </div>
+        <div class="nav-bar2">
+            <form action="/log_out" method="post">
+                {%csrf_token%}
+                <input type="submit" value="Log out">
+
+            </form>
+            
+        </div>
+    </div>
+
+    <h1>Order Details</h1>
+    
+    <table>
+        <tr>
+            <th>Order number</th>
+            <th>Customer Name</th>
+            <th>Order Date</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+        {%for ord in order%}
+        <tr>
+
+            <td>{{ord.id}}</td>
+            <td>{{ord.customer_name}}</td>
+            <td>{{ord.order_date}} </td>
+            <td>{% for pro in ord.product.all %}
+                {{pro.name}}
+                {%endfor%}</td>
+           
+            <!-- <td><form action="/show_cart/{{ord.id}}">
+              choice cart<select name="cart">
+                <option value="">
+                </option>
+
+              </select>
+              <input type="submit" value="add to cart">
+
+            </form>
+            </td> -->
+            <td>{{ord.quantity_order}}</td>
+            <td>{{ord.location}}</td>
+            <td><a href="/delete_order/{{ord.id}}">delete</a></td>
+            
+            {%endfor%}
+            
+        </tr>
+    </table>
+
+</body>
+
+</html>

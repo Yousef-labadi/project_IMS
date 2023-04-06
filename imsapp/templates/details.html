@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-bar1" > 
+             
+                <a href="/home"> Home </a>
+                <p>|</p>
+                <a href="/inventory"> inventory </a>
+                <p>|</p>
+                <a href="/order/{{userid.id}}"> Order </a>
+                <p>|</p>
+                <a href="/show_list_order">Show Order </a>
+
+            
+        </div>
+        <div class="nav-bar2">
+            <form action="/log_out" method="post">
+                {%csrf_token%}
+                <input type="submit" value="Log out">
+
+            </form>
+            
+        </div>
+    </div>
+    <div class="information" style="text-align: center;">
+       
+        <p>Name Product : {{all_products.name}}</p>
+        <p>Price : {{all_products.price}}</p>
+        <p>Quantity : </p>
+        {% if all_products.quantity > 200 %}
+        <p> {{all_products.quantity}}</p>
+        {%else%}
+        <p style="color: red;">{{all_products.quantity}} </p>
+        <form action="/add_quntity/{{all_products.id}}" method="post">
+            {%csrf_token%}
+            <input type="number" name="quntity">
+            <input type="submit" value="add_quntity">
+        </form>
+        
+        
+        {%endif%}
+        <p>Update At : {{all_products.updated_at}}</p>
+        <p></p>
+        
+
+    </div>
+</body>
+</html>

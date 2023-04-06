@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'signin.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-5 bg-white m-auto wrapper ">
+                <h2 class="text-center pt-3"> Sign Up </h2>
+                <form action="/signup" method="post" class="col-lg-5 bg-white m-auto wrapper">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <span class="input-group-text mb-3">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control mb-3" placeholder="First Name" name="first_name">
+
+
+
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text mb-3">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input type="text" class="form-control mb-3" placeholder="Last Name" name="last_name">
+
+
+
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text mb-3">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                        <input type="text" class="form-control mb-3" placeholder="Email" name="email">
+
+
+
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text mb-3">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <input type="password" class="form-control mb-3" placeholder="password" name="pwd">
+
+
+
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text mb-3">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <input type="password" class="form-control mb-3" placeholder="confirm password" name="cpwd">
+
+
+
+                    </div>
+                    <div class="d-drid">
+                        <input type="submit" class="btn btn-success w-100" value="SignUp">
+                        <p class="text-center">
+                            Already Have an Account ? <a href="/log_in">Sign In Here</a>
+
+                        </p>
+
+                    </div>
+                </form>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="color:red;">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

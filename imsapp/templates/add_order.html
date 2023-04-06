@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Order</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'order.css' %}">
+</head>
+
+<body>
+
+    <div class="nav-bar">
+        <div class="nav-bar1">
+
+            <a href="/home"> Home </a>
+            <p>|</p><a href="/inventory"> inventory </a>
+            <p>|</p><a href="/order/{{user.id}}"> order </a>
+            <p>|</p>
+            <a href="/show_list_order">Show Order </a>
+
+        </div>
+        <div class="nav-bar2">
+            <form action="/log_out" method="post" style="background-color: #333;">
+                {%csrf_token%}
+                <input type="submit" value="Log out">
+
+            </form>
+
+        </div>
+    </div>
+    <div class="order_form" style="margin-top: 2rem;">
+        <form action="/add_order/{{user.id}}" method="post">
+            {%csrf_token%}
+            <p>Customer Name<input type="text" name="name_customer" placeholder="Customer Name"></p>
+            <p>Choose Product<select name="product">
+                    {%for pr in product%}
+                    <option value="{{pr.id}}"> {{pr.name}}</option>
+
+                    {%endfor%}
+                </select>
+                <!-- <p>Choose Product_id<select name="product_id" >
+                    {%for pr in product%}
+                    <option value="{{pr.id}}">{{pr.id}}</option>
+                
+                    {%endfor%}
+                </select> -->
+
+
+            </p>
+            <p>
+                Quantity : <input type="number" name="quantity" placeholder="quantity">
+            </p>
+            <p>Order Date <input type="date" name="order_date">
+            <p>Location <input type="text" name="loc"></p>
+
+            <input type="submit" value="Add Order">
+        </form>
+        
+        
+    </div>
+    <div style="text-align: center;">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="color:red;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+
+</body>
+
+</html>

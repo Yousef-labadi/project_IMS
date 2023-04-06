@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'inventory.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="nav-bar1" > 
+             
+                <a href="/home"> Home </a>
+                <p>|</p>
+                <a href="/inventory"> inventory </a>
+                <p>|</p>
+                <a href="/order/{{userid.id}}"> Order </a>
+                <p>|</p>
+                <a href="/show_list_order">Show Order </a>
+
+            
+        </div>
+        <div class="nav-bar2">
+            <form action="/log_out" method="post">
+                {%csrf_token%}
+                <input type="submit" value="Log out">
+
+            </form>
+            
+        </div>
+    </div>
+    
+    <div style="padding: 10px;">
+        <table id="example" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name Product</th>
+                    <th>price</th>
+                    <th>quantity</th>
+                    <th>category</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            {%for i in product%}
+            <tbody>
+                <tr>
+                    <td><a href="/information/{{i.id}}" class="a">{{i.name}}</a></td>
+                    <td>{{i.price}}</td>
+                    
+                    <td>{{i.quantity}}</td>
+                    <td>
+                    {%for j in i.categoies.all %}
+                    
+                    {{j.type}}</td>
+                    {%endfor%}
+                    <td><a href="/edit/{{i.id}}" class="a">Edit </a><a href="/delete/{{i.id}}" class="a"> | Delete</a></td>
+                    
+                </tr>
+            </tbody>
+            {%endfor%}
+            </table>
+    </div>
+
+
+
+
+    <div >
+        <a href="/go_to_add_products" class="a" style="padding: 10px;"> Add products</a>
+    </div>
+
+
+
+</body>
+
+</html>
